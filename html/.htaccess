@@ -1,0 +1,58 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Some hosts may require you to use the `RewriteBase` directive.
+  # Determine the RewriteBase automatically and set it as environment variable.
+  # If you are using Apache aliases to do mass virtual hosting or installed the
+  # project in a subdirectory, the base path will be prepended to allow proper
+  # resolution of the index.php file and to redirect to the correct URI. It will
+  # work in environments without path prefix as well, providing a safe, one-size
+  # fits all solution. But as you do not need it in this case, you can comment
+  # the following 2 lines to eliminate the overhead.
+  RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+  RewriteRule ^(.*) - [E=BASE:%1]
+  
+  # If the above doesn't work you might need to set the `RewriteBase` directive manually, it should be the
+  # absolute physical path to the directory that contains this htaccess file.
+  # RewriteBase /
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag display_errors Off
+   php_value max_execution_time 90
+   php_value max_input_time 90
+   php_value max_input_vars 1000
+   php_value memory_limit 512M
+   php_value post_max_size 100M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 100M
+   php_flag zlib.output_compression Off
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 90
+   php_value max_input_time 90
+   php_value max_input_vars 1000
+   php_value memory_limit 512M
+   php_value post_max_size 100M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 100M
+   php_flag zlib.output_compression Off
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
